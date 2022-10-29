@@ -19,15 +19,15 @@ public class App {
            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
            PreparedStatement addNewTask;
-           PreparedStatement deleteTask = connection.prepareStatement("INSERT INTO task VALUES (?, ?, ?, ?)");
+           PreparedStatement deleteTask;
            PreparedStatement getAllTasks = connection.prepareStatement("SELECT * FROM task ORDER BY priority DESC");
 
            while(true) {
                System.out.println("Decide what you want to do:");
                System.out.println("\t 1 = Show tasks");
                System.out.println("\t 2 = Add new task");
-               System.out.println("\t 3 = Delete task by id");
-               System.out.println("\t 4 = Update task's state");
+               System.out.println("\t 3 = Update task's state");
+               System.out.println("\t 4 = Delete task by id");
                System.out.println("\t 5 = Exit app");
 
                 decision = scanner.nextInt();
@@ -70,6 +70,17 @@ public class App {
                        }
 
                        addNewTask.execute();
+                       break;
+                   case 3:
+                       break;
+                   case 4:
+                       System.out.print("Enter id of a task you want to delete\n: ");
+                       int id = scanner.nextInt();
+
+                       deleteTask = connection.prepareStatement(String.format("DELETE FROM task WHERE id=%d", id));
+
+                       deleteTask.execute();
+                       break;
                    case 5:
                        System.exit(0);
                }
