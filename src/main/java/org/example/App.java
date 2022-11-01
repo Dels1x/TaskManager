@@ -26,21 +26,45 @@ public class App {
            PreparedStatement addNewTask;
            PreparedStatement updateTask;
            PreparedStatement deleteTask;
-           PreparedStatement getAllTasks = connection.prepareStatement("SELECT * FROM task ORDER BY priority");
+           PreparedStatement getAllCompletedTasks = connection.prepareStatement(
+                   "SELECT * FROM task WHERE " +
+                           "state = 'Completed' OR state = 'completed' OR state = 'COMPLETED'" +
+                           "OR state = 'Finished' OR state = 'finished' OR state = 'FINISHED' ORDER BY priority");
+
+            PreparedStatement getAllUncompletedTasks = connection.prepareStatement(
+                    "SELECT * FROM task WHERE " +
+                            "state != 'Completed' AND state != 'completed' AND state != 'COMPLETED'" +
+                            "AND state != 'Finished' AND state != 'finished' AND state != 'FINISHED' ORDER BY priority");
 
            while(true) {
                System.out.println("Decide what you want to do:");
-               System.out.println("\t 1 = Show tasks");
-               System.out.println("\t 2 = Add new task");
-               System.out.println("\t 3 = Update task");
-               System.out.println("\t 4 = Delete task by id");
-               System.out.println("\t 5 = Exit app");
+               System.out.println("\t 1 = Show completed tasks");
+               System.out.println("\t 2 = Show uncompleted tasks");
+               System.out.println("\t 3 = Add new task");
+               System.out.println("\t 5 = Update task");
+               System.out.println("\t 6 = Delete task by id");
+               System.out.println("\t 7 = Exit app");
 
                 decision = scanner.nextInt();
 
                switch (decision) {
                    case 1 -> {
-                       ResultSet resultSet = getAllTasks.executeQuery();
+                       ResultSet resultSet = getAllCompletedTasks.executeQuery();
+                       while (resultSet.next()) {
+                           System.out.printf("#%d\t\t\t\t%s \n", resultSet.getInt(1),
+                                   capitalize(resultSet.getString(2)));
+                           if (resultSet.getString(3) == null) {
+                               System.out.println("Description:\tNo description");
+                           } else {
+                               System.out.printf("Description:\t%s\n", capitalize(resultSet.getString(3)));
+                           }
+                           System.out.printf("Priority:\t\t%d\n", resultSet.getInt(4));
+                           System.out.println("State:\t\t\tCompleted");
+                           System.out.println("----------------");
+                       }
+                   }
+                   case 2 -> {
+                       ResultSet resultSet = getAllUncompletedTasks.executeQuery();
                        while (resultSet.next()) {
                            System.out.printf("#%d\t\t\t\t%s \n", resultSet.getInt(1),
                                    capitalize(resultSet.getString(2)));
@@ -54,7 +78,7 @@ public class App {
                            System.out.println("----------------");
                        }
                    }
-                   case 2 -> {
+                   case 3 -> {
                        while (true) {
                            System.out.print("Enter a name for your task\n: ");
                            scanner.nextLine();
@@ -117,7 +141,7 @@ public class App {
                        }
                        addNewTask.execute();
                    }
-                   case 3 -> {
+                   case 4 -> {
                        System.out.print("Enter ID of task you want to update\n: ");
                        id = scanner.nextInt();
                        System.out.println("Enter what you want to update: ");
@@ -224,13 +248,13 @@ public class App {
                            break;
                        }
                    }
-                   case 4 -> {
+                   case 5 -> {
                        System.out.print("Enter ID of a task you want to delete\n: ");
                        id = scanner.nextInt();
                        deleteTask = connection.prepareStatement(String.format("DELETE FROM task WHERE id=%d", id));
                        deleteTask.execute();
                    }
-                   case 5 -> System.exit(0);
+                   case 6 -> System.exit(0);
                }
            }
         } catch(SQLException e) {
