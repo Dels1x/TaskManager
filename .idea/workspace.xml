@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8270411-eb85-4630-b634-e75cec8010d5" name="Changes" comment="first commit">
+    <list default="true" id="c8270411-eb85-4630-b634-e75cec8010d5" name="Changes" comment="Show task, adding new tasks, deleting tasks features implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
     </list>
@@ -64,7 +64,12 @@
       <workItem from="1666979061280" duration="2859000" />
       <workItem from="1666982038178" duration="685000" />
       <workItem from="1667037546104" duration="4237000" />
-      <workItem from="1667052934920" duration="6627000" />
+      <workItem from="1667052934920" duration="6778000" />
+      <workItem from="1667072386939" duration="590000" />
+      <workItem from="1667133315060" duration="593000" />
+      <workItem from="1667139460950" duration="3648000" />
+      <workItem from="1667154361771" duration="1102000" />
+      <workItem from="1667297607182" duration="3596000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1667062918837</created>
@@ -73,7 +78,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667062918837</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Show task, adding new tasks, deleting tasks features implemented">
+      <created>1667063775586</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667063775587</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +104,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="Show task, adding new tasks, deleting tasks features implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show task, adding new tasks, deleting tasks features implemented" />
   </component>
 </project>
