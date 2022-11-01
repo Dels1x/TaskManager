@@ -38,14 +38,13 @@ public class App {
 
                 decision = scanner.nextInt();
 
-               switch(decision) {
-                   case 1:
+               switch (decision) {
+                   case 1 -> {
                        ResultSet resultSet = getAllTasks.executeQuery();
-
-                       while(resultSet.next()) {
+                       while (resultSet.next()) {
                            System.out.printf("#%d\t\t\t\t%s \n", resultSet.getInt(1),
                                    capitalize(resultSet.getString(2)));
-                           if(resultSet.getString(3) == null) {
+                           if (resultSet.getString(3) == null) {
                                System.out.println("Description:\tNo description");
                            } else {
                                System.out.printf("Description:\t%s\n", capitalize(resultSet.getString(3)));
@@ -54,14 +53,14 @@ public class App {
                            System.out.printf("State:\t\t\t%s\n", resultSet.getString(5));
                            System.out.println("----------------");
                        }
-                       break;
-                   case 2:
-                       while(true) {
+                   }
+                   case 2 -> {
+                       while (true) {
                            System.out.print("Enter a name for your task\n: ");
                            scanner.nextLine();
                            name = scanner.nextLine();
 
-                           if(name.isBlank()) {
+                           if (name.isBlank()) {
                                System.out.println("Name can't be blank!");
                                continue;
                            }
@@ -74,12 +73,10 @@ public class App {
                        }
                        System.out.print("Enter a description for your task. Leave blank if you prefer not to have one\n: ");
                        description = scanner.nextLine();
-
-                       if(description.length() > 255) {
+                       if (description.length() > 255) {
                            description = description.substring(0, 255);
                        }
-
-                       while(true) {
+                       while (true) {
                            System.out.print("Enter a priority for your task\n: ");
                            priority = scanner.nextLine();
 
@@ -94,11 +91,11 @@ public class App {
                            }
                            break;
                        }
-                       while(true) {
+                       while (true) {
                            System.out.print("Enter a state for your task\n: ");
                            state = scanner.nextLine();
 
-                           if(state.isBlank()) {
+                           if (state.isBlank()) {
                                System.out.println("State can't be blank!");
                                continue;
                            }
@@ -109,8 +106,7 @@ public class App {
 
                            break;
                        }
-
-                       if(description.isBlank()) {
+                       if (description.isBlank()) {
                            addNewTask = connection.prepareStatement(
                                    "INSERT INTO task (name, description, priority, state)" +
                                            String.format(" VALUES ('%s', null, %s, '%s')", name, priority, state));
@@ -119,10 +115,9 @@ public class App {
                                    "INSERT INTO task (name, description, priority, state)" +
                                            String.format(" VALUES ('%s', '%s', %s, '%s')", name, description, priority, state));
                        }
-
                        addNewTask.execute();
-                       break;
-                   case 3:
+                   }
+                   case 3 -> {
                        System.out.print("Enter ID of task you want to update\n: ");
                        id = scanner.nextInt();
                        System.out.println("Enter what you want to update: ");
@@ -130,18 +125,16 @@ public class App {
                        System.out.println("\t 2. Description");
                        System.out.println("\t 3. Priority");
                        System.out.print("\t 4. State\n: ");
-
                        decision = scanner.nextInt();
-
-                       while(true) {
+                       while (true) {
                            switch (decision) {
                                case 1:
-                                   while(true) {
+                                   while (true) {
                                        System.out.print("Enter a new name for a task\n: ");
                                        scanner.nextLine();
                                        name = scanner.nextLine();
 
-                                       if(name.isBlank()) {
+                                       if (name.isBlank()) {
                                            System.out.println("Name can't be blank!");
                                            continue;
                                        }
@@ -155,7 +148,7 @@ public class App {
 
                                        updateTask.execute();
 
-                                       System.out.println("Name of the task successfully was set to "+name+".");
+                                       System.out.println("Name of the task successfully was set to " + name + ".");
                                        break;
                                    }
                                    break;
@@ -164,7 +157,7 @@ public class App {
                                    scanner.nextLine();
                                    description = scanner.nextLine();
 
-                                   if(description.length() > 255) {
+                                   if (description.length() > 255) {
                                        description = description.substring(0, 255);
                                    }
 
@@ -173,20 +166,20 @@ public class App {
 
                                    updateTask.execute();
 
-                                   System.out.println("Description of the task successfully was set to "+description+".");
+                                   System.out.println("Description of the task successfully was set to " + description + ".");
                                    break;
                                case 3:
-                                   while(true) {
+                                   while (true) {
                                        System.out.print("Enter a new priority for a task\n: ");
                                        scanner.nextLine();
                                        priority = scanner.nextLine();
 
-                                       if(priority.isBlank()) {
+                                       if (priority.isBlank()) {
                                            System.out.println("Priority can't be blank!");
                                            continue;
                                        }
 
-                                       if(!priority.matches("[0-9]+")) {
+                                       if (!priority.matches("[0-9]+")) {
                                            System.out.println("Priority must be a number");
                                            continue;
                                        }
@@ -196,17 +189,17 @@ public class App {
 
                                        updateTask.execute();
 
-                                       System.out.println("Priority of the task successfully was set to "+priority+".");
+                                       System.out.println("Priority of the task successfully was set to " + priority + ".");
                                        break;
                                    }
                                    break;
                                case 4:
-                                   while(true) {
+                                   while (true) {
                                        System.out.print("Enter a new state for a task\n: ");
                                        scanner.nextLine();
                                        state = scanner.nextLine();
 
-                                       if(state.isBlank()) {
+                                       if (state.isBlank()) {
                                            System.out.println("State can't be blank!");
                                            continue;
                                        }
@@ -220,7 +213,7 @@ public class App {
 
                                        updateTask.execute();
 
-                                       System.out.println("State of the task successfully was set to "+state+".");
+                                       System.out.println("State of the task successfully was set to " + state + ".");
                                        break;
                                    }
                                    break;
@@ -230,17 +223,14 @@ public class App {
                            }
                            break;
                        }
-                       break;
-                   case 4:
+                   }
+                   case 4 -> {
                        System.out.print("Enter ID of a task you want to delete\n: ");
                        id = scanner.nextInt();
-
                        deleteTask = connection.prepareStatement(String.format("DELETE FROM task WHERE id=%d", id));
-
                        deleteTask.execute();
-                       break;
-                   case 5:
-                       System.exit(0);
+                   }
+                   case 5 -> System.exit(0);
                }
            }
         } catch(SQLException e) {
