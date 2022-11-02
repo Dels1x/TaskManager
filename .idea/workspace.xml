@@ -70,7 +70,8 @@
       <workItem from="1667139460950" duration="3648000" />
       <workItem from="1667154361771" duration="1102000" />
       <workItem from="1667297607182" duration="3854000" />
-      <workItem from="1667306793100" duration="410000" />
+      <workItem from="1667306793100" duration="524000" />
+      <workItem from="1667412585920" duration="384000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1667062918837</created>
@@ -100,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667305115848</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Developing of the app finished. My 1st pet-project with Java">
+      <created>1667307296414</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1667307296414</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

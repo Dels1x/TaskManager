@@ -41,9 +41,9 @@ public class App {
                System.out.println("\t 1 = Show completed tasks");
                System.out.println("\t 2 = Show uncompleted tasks");
                System.out.println("\t 3 = Add new task");
-               System.out.println("\t 5 = Update task");
-               System.out.println("\t 6 = Delete task by id");
-               System.out.println("\t 7 = Exit app");
+               System.out.println("\t 4 = Update task");
+               System.out.println("\t 5 = Delete task by id");
+               System.out.println("\t 6 = Exit app");
 
                 decision = scanner.nextInt();
 
@@ -253,6 +253,8 @@ public class App {
                        id = scanner.nextInt();
                        deleteTask = connection.prepareStatement(String.format("DELETE FROM task WHERE id=%d", id));
                        deleteTask.execute();
+
+                       System.out.println("Task is successfully deleted!");
                    }
                    case 6 -> System.exit(0);
                }
