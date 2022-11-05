@@ -5,13 +5,9 @@ import java.util.Scanner;
 
 public class App {
 
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
-    private static final String DB_USERNAME = "postgres";
-    private static final String DB_PASSWORD = "password";
 
     public static void main(String[] args ) {
 
-        Connection connection;
         Scanner scanner = new Scanner(System.in);
         int decision;
         int id;
@@ -20,18 +16,19 @@ public class App {
         String priority;
         String state;
 
+        Database database = new Database();
+
         try{
-           connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
            PreparedStatement addNewTask;
            PreparedStatement updateTask;
            PreparedStatement deleteTask;
-           PreparedStatement getAllCompletedTasks = connection.prepareStatement(
+           PreparedStatement getAllCompletedTasks = database.getConnection().prepareStatement(
                    "SELECT * FROM task WHERE " +
                            "state = 'Completed' OR state = 'completed' OR state = 'COMPLETED'" +
                            "OR state = 'Finished' OR state = 'finished' OR state = 'FINISHED' ORDER BY priority");
 
-            PreparedStatement getAllUncompletedTasks = connection.prepareStatement(
+            PreparedStatement getAllUncompletedTasks = database.getConnection().prepareStatement(
                     "SELECT * FROM task WHERE " +
                             "state != 'Completed' AND state != 'completed' AND state != 'COMPLETED'" +
                             "AND state != 'Finished' AND state != 'finished' AND state != 'FINISHED' ORDER BY priority");
@@ -131,11 +128,11 @@ public class App {
                            break;
                        }
                        if (description.isBlank()) {
-                           addNewTask = connection.prepareStatement(
+                           addNewTask = database.getConnection().prepareStatement(
                                    "INSERT INTO task (name, description, priority, state)" +
                                            String.format(" VALUES ('%s', null, %s, '%s')", name, priority, state));
                        } else {
-                           addNewTask = connection.prepareStatement(
+                           addNewTask = database.getConnection().prepareStatement(
                                    "INSERT INTO task (name, description, priority, state)" +
                                            String.format(" VALUES ('%s', '%s', %s, '%s')", name, description, priority, state));
                        }
@@ -167,7 +164,7 @@ public class App {
                                            name = name.substring(0, 90);
                                        }
 
-                                       updateTask = connection.prepareStatement(
+                                       updateTask = database.getConnection().prepareStatement(
                                                String.format("UPDATE task SET name = '%s' WHERE id = %d", name, id));
 
                                        updateTask.execute();
@@ -185,7 +182,7 @@ public class App {
                                        description = description.substring(0, 255);
                                    }
 
-                                   updateTask = connection.prepareStatement(
+                                   updateTask = database.getConnection().prepareStatement(
                                            String.format("UPDATE task SET description = '%s' WHERE id = %d", description, id));
 
                                    updateTask.execute();
@@ -208,7 +205,7 @@ public class App {
                                            continue;
                                        }
 
-                                       updateTask = connection.prepareStatement(
+                                       updateTask = database.getConnection().prepareStatement(
                                                String.format("UPDATE task SET priority = '%s' WHERE id = %d", priority, id));
 
                                        updateTask.execute();
@@ -232,7 +229,7 @@ public class App {
                                            state = state.substring(0, 30);
                                        }
 
-                                       updateTask = connection.prepareStatement(
+                                       updateTask = database.getConnection().prepareStatement(
                                                String.format("UPDATE task SET state = '%s' WHERE id = %d", state, id));
 
                                        updateTask.execute();
@@ -251,7 +248,7 @@ public class App {
                    case 5 -> {
                        System.out.print("Enter ID of a task you want to delete\n: ");
                        id = scanner.nextInt();
-                       deleteTask = connection.prepareStatement(String.format("DELETE FROM task WHERE id=%d", id));
+                       deleteTask = database.getConnection().prepareStatement(String.format("DELETE FROM task WHERE id=%d", id));
                        deleteTask.execute();
 
                        System.out.println("Task is successfully deleted!");

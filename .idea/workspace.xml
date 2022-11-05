@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8270411-eb85-4630-b634-e75cec8010d5" name="Changes" comment="Developing of the app finished. My 1st pet-project with Java">
+    <list default="true" id="c8270411-eb85-4630-b634-e75cec8010d5" name="Changes" comment="bugfix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
     </list>
@@ -12,6 +13,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,7 +79,12 @@
       <workItem from="1667154361771" duration="1102000" />
       <workItem from="1667297607182" duration="3854000" />
       <workItem from="1667306793100" duration="524000" />
-      <workItem from="1667412585920" duration="384000" />
+      <workItem from="1667412585920" duration="778000" />
+      <workItem from="1667475269059" duration="1448000" />
+      <workItem from="1667498135991" duration="756000" />
+      <workItem from="1667558734041" duration="651000" />
+      <workItem from="1667578072317" duration="168000" />
+      <workItem from="1667650553567" duration="376000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1667062918837</created>
@@ -108,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667307296414</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="bugfix">
+      <created>1667413300811</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667413300811</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +149,7 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="Show task, adding new tasks, deleting tasks features implemented" />
     <MESSAGE value="Developing of the app finished. My 1st pet-project with Java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Developing of the app finished. My 1st pet-project with Java" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
   </component>
 </project>
